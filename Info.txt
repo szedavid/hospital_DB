@@ -1,0 +1,29 @@
+
+Ráfordított idő:
+
+Táblaszerkezet megtervezése 1 óra
+Táblaszerkezet optimalizációk (átszervezés, logikai megkötések) 2 óra
+Trigger funkciók megírása, tesztelése 2 óra
+( Megkopott DB ismereteim felelevenítése: 2 óra :) )
+
+
+
+Info:
+
+"RELATIONSHIP_TYPE" és "RELATIONSHIP_QUALITY" tábláknak is adtam ID pk mezőket,
+de ezek eltérő szemlélet alapján kiválthatók natural key-k alkalmazásával.
+
+
+További optimalizációs lehetőségek:
+
+A táblák létrehozásakor definiált CHECK-ek kiválthatók before insert triggerekkel.
+Ez lehetőséget ad beszédesebb hibaüzenetek megjelenítésére.
+Erre példa a "relationship_self_preventer" trigger függvénye.
+
+A "FIRST_NAME" tábla tárolja, hogy az egyes nevek melyik nemhez tartoznak, lehetővé téve az alábbi validációkat:
+ - Before triggerrel vizsgálni, hogy a "Patient" kiválasztott keresztneve a kiválasztott nemnek megfelelő-e.
+ - Before triggerrel vizsgálni, hogy a "Patient" anyjának keresztneve női keresztnév-e.
+
+Érdekesség:
+	A nevek feltölthetők egy korábbi hobbyprojektemben található .csv fájlokkal:
+	https://github.com/szedavid/alairas/tree/master/src/main/resources/nevek
